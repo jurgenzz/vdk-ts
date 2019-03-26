@@ -1,0 +1,1 @@
+export const BOLD_CHAR = '\u0002';
