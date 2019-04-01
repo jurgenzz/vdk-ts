@@ -41,8 +41,6 @@ const lookupNames = (msg: string) => {
 };
 
 export const vd: ReplyAction = (e, msg) => {
-  // todo
-  // vd checkum
   let date = formatDate();
 
   if (msg) {
@@ -55,7 +53,6 @@ export const vd: ReplyAction = (e, msg) => {
     }
   }
 
-  console.log(date.short);
   const names = (nd[date.short] || []).join(', ');
 
   if (!names.length) {

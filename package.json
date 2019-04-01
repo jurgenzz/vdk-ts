@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "irc-framework": "^4.2.0"
   },
   "devDependencies": {

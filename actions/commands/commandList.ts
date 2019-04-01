@@ -1,5 +1,7 @@
 import { vd } from './vd';
 import { search } from './search';
+import { uptime } from './uptime';
+import { weather } from './weather';
 
 export interface ReplyAction {
   (e: Message, m?: string): void;
@@ -10,10 +12,12 @@ interface Commands {
 }
 
 const localCommands: Commands = {
-  ping: (e) => e.reply('pong'),
-  echo: (e: Message, m?: string) => m && e.reply(m),
+  ping: e => e.reply('pong'),
+  echo: (e, m) => m && e.reply(m),
   vd,
-  search
+  search,
+  uptime,
+  weather
 };
 
 export const getCommand = (cmd: string) => {
