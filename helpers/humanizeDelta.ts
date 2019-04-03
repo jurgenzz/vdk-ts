@@ -1,4 +1,8 @@
-const DURATION_MAPPING = {
+interface Mapping {
+  [key: string]: number;
+}
+
+const DURATION_MAPPING: Mapping = {
   y: 60 * 60 * 24 * 365,
   w: 60 * 60 * 24 * 7,
   d: 60 * 60 * 24,
@@ -12,7 +16,6 @@ export const humanizeDelta = (delta: number) => {
 
   let d = delta;
   let durations: any[] = [];
-  let a = Object.entries(DURATION_MAPPING);
 
   Object.entries(DURATION_MAPPING).forEach(([durationKey, duration]) => {
     // let duration: number = DURATION_MAPPING[durationKey];
@@ -28,4 +31,21 @@ export const humanizeDelta = (delta: number) => {
   });
 
   return durations.map(([name, count]) => `${count}${name}`).join(' ');
+};
+
+export const stringToMs = (amount: string) => {
+  if (!amount) {
+    return 0;
+  }
+  let value = (amount.match(/\d+/) || [])[0];
+  let key = (amount.match(/[a-z]/) || [])[0];
+
+  if (!value || !key) {
+    return 0;
+  }
+
+  if (DURATION_MAPPING[key]) {
+    return parseInt(value) * DURATION_MAPPING[key];
+  }
+  return 0;
 };

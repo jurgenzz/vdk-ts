@@ -2,6 +2,7 @@ import { vd } from './vd';
 import { search } from './search';
 import { uptime } from './uptime';
 import { weather } from './weather';
+import { remind } from './remind';
 
 export interface ReplyAction {
   (e: Message, m?: string): void;
@@ -17,7 +18,8 @@ const localCommands: Commands = {
   vd,
   search,
   uptime,
-  weather
+  weather,
+  remind
 };
 
 export const getCommand = (cmd: string) => {

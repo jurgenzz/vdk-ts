@@ -40,17 +40,10 @@ const lookupNames = (msg: string) => {
   return `${nameFormatted} vārda dienu svin ${(date && date.full) || d}.`;
 };
 
-export const vd: ReplyAction = (e, msg) => {
+export const getNameDayByDate = (dateFromMsg?: { short: string; full: string }) => {
   let date = formatDate();
-
-  if (msg) {
-    let dateFromMsg = formatDateFromStr(msg);
-
-    if (dateFromMsg) {
-      date = dateFromMsg;
-    } else {
-      return e.reply(lookupNames(msg));
-    }
+  if (dateFromMsg) {
+    date = dateFromMsg;
   }
 
   const names = (nd[date.short] || []).join(', ');
@@ -58,7 +51,10 @@ export const vd: ReplyAction = (e, msg) => {
   if (!names.length) {
     return;
   }
-  let reply = `Vārda dienu šodien, ${date.full}, ${BOLD_CHAR}${names}${BOLD_CHAR}`;
+
+  let reply = `Vārda dienu ${dateFromMsg ? '' : 'šodien, '}${date.full}${
+    dateFromMsg ? ' ' : ', '
+  }svin ${BOLD_CHAR}${names}${BOLD_CHAR}`;
 
   let extended = nde[date.short];
   if (extended && extended.length > 0) {
@@ -68,6 +64,26 @@ export const vd: ReplyAction = (e, msg) => {
   if (extended) {
     reply += `, kā arī ${extended}`;
   }
+  return reply;
+
+};
+
+// export const getNameDayByDate = date => {};
+
+export const vd: ReplyAction = (e, msg) => {
+  let date = formatDate();
+  let dateFromMsg;
+  if (msg) {
+    dateFromMsg = formatDateFromStr(msg);
+
+    if (typeof dateFromMsg === 'object') {
+      date = dateFromMsg;
+    } else {
+      return e.reply(lookupNames(msg));
+    }
+  }
+
+  let reply = getNameDayByDate(date);
 
   e.reply(`${reply}.`);
 };

@@ -37,5 +37,6 @@ declare module 'irc-framework' {
     on(event: 'message', cb: (event: Message) => void): void;
     on(event: 'registered', cb: () => void): void;
     on(event: 'connected', cb: () => void): void;
+    say(target: string, message: string): void;
   }
 }
