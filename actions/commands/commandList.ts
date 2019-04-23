@@ -4,6 +4,8 @@ import { uptime } from './uptime';
 import { weather } from './weather';
 import { remind } from './remind';
 
+import { getCommandsFromDb } from '../../db/index';
+
 export interface ReplyAction {
   (e: Message, m?: string): void;
 }
@@ -22,12 +24,16 @@ const localCommands: Commands = {
   remind
 };
 
-export const getCommand = (cmd: string) => {
+export const getCommand = async (cmd: string) => {
   let c: string = cmd.replace(/^!/, '');
   const localCmd = localCommands[c];
   if (localCmd) {
     return localCmd;
   }
 
-  // TODO: get commands from databeiz
+  let commands: any = await getCommandsFromDb();
+
+  if (commands[c]) {
+    return (e: Message) => e.reply(commands[c]);
+  }
 };

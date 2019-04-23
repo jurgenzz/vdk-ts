@@ -1,11 +1,11 @@
 import { dev } from '../config/dev';
-import { getCommand } from './commands/commandList';
+import { getCommand, ReplyAction } from './commands/commandList';
 
-export const onMessage = (event: Message) => {
+export const onMessage = async (event: Message) => {
   if (event.nick === dev.nick) {
     return;
   }
-  
+
   let message;
 
   const nickPattern = new RegExp(`^${dev.nick}[,:]{1} ?`);
@@ -23,8 +23,8 @@ export const onMessage = (event: Message) => {
     return;
   }
 
-  const action = getCommand(cmd);
-  
+  const action: ReplyAction | null = (await getCommand(cmd)) || null;
+
   if (action) {
     message = message.replace(cmd, '');
     message = message.replace(/^\ /, '');

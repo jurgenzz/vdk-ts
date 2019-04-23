@@ -40,3 +40,5 @@ declare module 'irc-framework' {
     say(target: string, message: string): void;
   }
 }
+
+declare module 'connect-route';
