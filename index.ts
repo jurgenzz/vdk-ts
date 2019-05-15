@@ -5,6 +5,7 @@ import { setUptime } from './helpers/uptime';
 import { initVd } from './actions/initVd';
 import { getAllReminders, removeReminder } from './helpers/saveReminder';
 import { scheduleJob } from 'node-schedule';
+import './server'
 
 const client = new irc.Client();
 

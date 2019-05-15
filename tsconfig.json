@@ -47,6 +47,6 @@
     "esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
     "lib": ["dom", "es2017"],
   },
-  "files": ["index.ts", "./web/index.ts"],
-  "include": ["./web/public/js/**/*"]
+  "files": ["index.ts", "./server/index.ts"],
+  // "include": ["./web/public/js/**/*"]
 }

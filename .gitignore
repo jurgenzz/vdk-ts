@@ -2,3 +2,5 @@ node_modules
 src
 vdk.db
 .vscode
+.sass-cache/*
+web/public/js/*

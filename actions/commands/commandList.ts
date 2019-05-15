@@ -3,6 +3,7 @@ import { search } from './search';
 import { uptime } from './uptime';
 import { weather } from './weather';
 import { remind } from './remind';
+import { runCommand } from './runCommand';
 
 import { getCommandsFromDb } from '../../db/index';
 
@@ -33,7 +34,10 @@ export const getCommand = async (cmd: string) => {
 
   let commands: any = await getCommandsFromDb();
 
-  if (commands[c]) {
-    return (e: Message) => e.reply(commands[c]);
+  // commands in db are stored with a "!"
+  if (commands[cmd]) {
+    return async (e: Message) => {
+      await runCommand(commands[cmd], e);
+    };
   }
 };

@@ -30,7 +30,7 @@ app.use(
     });
 
     route.get('/api/commands', async (req, res) => {
-      let commands = await getCommandsFromDb(); 
+      let commands = await getCommandsFromDb();
 
       res.end(JSON.stringify(commands || {}));
     });
@@ -39,23 +39,26 @@ app.use(
       let { name, value } = req.body;
 
       if (!name || !value) {
-        res.end('false');
+        res.end(JSON.stringify({ success: false }));
         return;
       }
 
       let commands: any = await getCommandsFromDb();
 
       if (!commands[name]) {
-        let id = await saveCommand(name, value);
-        res.end(id + '');
+        await saveCommand(name, value);
+        res.end(JSON.stringify({ success: true }));
+        return;
+      } else {
+        res.end(JSON.stringify({ success: false }));
       }
-
-      res.end('ok');
+      
+      
     });
   })
 );
 
 //@ts-ignore
-app.use(serveStatic(__dirname + '/public')).listen(3000, function() {
+app.use(serveStatic(__dirname + '/../../web/public')).listen(3000, function() {
   console.log('Server running on 3000...');
 });

@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f6f8fa;
+  color: #24292e;
+  height: 100%; }
+
+.section-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 300;
+  letter-spacing: -1.2px;
+  color: #24292c;
+  padding: 33px 0;
+  margin: 0; }
+
+.commands-wrap {
+  padding: 16px;
+  border-top: 1px solid #e1e4e8;
+  background: #fff;
+  min-height: calc(100vh - 111px); }
+.commands-list {
+  max-width: 800px;
+  margin: 0 auto; }
+
+button {
+  border: 1px solid #e1e4e7;
+  padding: 8px;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer; }
+  button:hover, button:focus {
+    outline: none; }
+  button:hover {
+    background: #f9f9f9;
+    border: 1px solid #cccfd2; }
+  button.add {
+    background: #28a745;
+    color: #fff; }
+    button.add:hover {
+      background: #32b34f; }
+
+.add-command-wrap {
+  max-width: 800px;
+  margin: 24px auto;
+  position: absolute;
+  top: 16px;
+  right: 24px; }
+  .add-command-wrap .command-popup {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 500px;
+    background: #fff;
+    padding: 24px;
+    box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.5);
+    border-radius: 4px; }
+    .add-command-wrap .command-popup .btn-wrap {
+      text-align: right; }
+      .add-command-wrap .command-popup .btn-wrap button {
+        margin-left: 8px; }
+
+input {
+  display: block;
+  width: 100%;
+  margin: 8px auto;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-weight: 100; }
+
+.input-error {
+  display: block;
+  font-size: 12px;
+  color: #a04747;
+  margin: 0 0 12px; }
+
+.command-item {
+  margin: 16px 0;
+  padding: 6px 0 16px 0;
+  border-bottom: 1px solid #e1e4e8; }
+  .command-item:last-of-type {
+    border-bottom: none; }
+  .command-item .title {
+    color: #0366d6;
+    font-size: 20px;
+    margin: 0 0 8px; }
+  .command-item .body {
+    color: #586069;
+    font-size: 14px; }
+
+.editor-wrap {
+  max-width: 1080px;
+  margin: 0 auto; }
+  .editor-wrap > input {
+    width: 200px;
+    display: inline-block; }
+  .editor-wrap .editor {
+    border: 1px solid #ddd; }

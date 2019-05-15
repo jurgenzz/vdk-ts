@@ -1,7 +1,10 @@
+//@ts-ignore
+__webpack_public_path__ = '/js/'
+
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import axios from 'axios';
-import { AddCommand } from './AddCommand';
 import { CommandList } from './CommandList';
 
 export interface Command {
@@ -15,15 +18,19 @@ const init = async () => {
 init();
 
 const onAdd = async (command: string, reply: string) => {
-  await axios.post('/api/saveCmd', { name: command, value: reply });
-  init();
+  let re = await axios.post('/api/saveCmd', { name: command, value: reply })
+
+  if (re.data.success) {
+    init();
+  }
+
+  return re.data.success;
 };
 
 const App = ({ commands }: { commands: Command }) => {
   return (
-    <div>
-      <h2>VDK commands</h2>
-      <AddCommand onAdd={onAdd} />
+    <div className="commands">
+      <h2 className="section-title">Commands</h2>
       <CommandList commands={commands} />
     </div>
   );
